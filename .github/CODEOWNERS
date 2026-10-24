@@ -1,0 +1,17 @@
+# Who gets asked to review changes. Approval is only required once
+# "Require review from Code Owners" is on in the main branch ruleset.
+# The team needs write access to this repo, or GitHub ignores its lines.
+#
+# GitHub uses the LAST matching line for each file, so keep the default
+# first and the specific rules after it.
+
+# Default: everything, including README.md.
+*              @NR-AI-Delivery/nr-ai-delivery-team
+
+# What gets installed, and the repo's own guardrails (this file, CI, the
+# PR template). Same team today; listed explicitly so these stay protected
+# if the default above is later widened to a bigger group.
+/Brewfile      @NR-AI-Delivery/nr-ai-delivery-team
+/bootstrap.sh  @NR-AI-Delivery/nr-ai-delivery-team
+/.pre-commit-config.yaml  @NR-AI-Delivery/nr-ai-delivery-team
+/.github/      @NR-AI-Delivery/nr-ai-delivery-team

@@ -1,0 +1,28 @@
+# Checks that run on every commit. Run them all by hand with:
+#   pre-commit run --all-files
+# Bump the pinned versions with: pre-commit autoupdate
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-merge-conflict
+
+  # Use the installed shellcheck and gitleaks rather than letting pre-commit
+  # build them: those builds download large files from GitHub, which can fail
+  # on some networks. gitleaks is in the Brewfile; shellcheck is a one-time
+  # brew install for contributors (see CONTRIBUTING.md).
+  - repo: local
+    hooks:
+      - id: shellcheck
+        name: shellcheck
+        entry: shellcheck
+        language: system
+        types: [shell]
+      - id: gitleaks
+        name: gitleaks (staged changes)
+        entry: gitleaks git --pre-commit --staged --redact --no-banner
+        language: system
+        pass_filenames: false

@@ -1,0 +1,7 @@
+# CI's actions are pinned to commit SHAs; this opens PRs to bump them.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
